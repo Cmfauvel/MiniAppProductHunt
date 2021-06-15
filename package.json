@@ -1,0 +1,22 @@
+{
+  "name": "miniappproducthunt",
+  "version": "1.0.0",
+  "description": "Outil connecté à l'API Product Hunt",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cmfauvel/MiniAppProductHunt.git"
+  },
+  "author": "Caroline Fauvel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cmfauvel/MiniAppProductHunt/issues"
+  },
+  "homepage": "https://github.com/Cmfauvel/MiniAppProductHunt#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
