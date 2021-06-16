@@ -8,16 +8,15 @@ app.use(express.json({
   }))
   app.use(cors());
 
-  app.post("/user", (req, res) => {
-    console.log(req.body.pseudo)
-    axios.get("https://api.producthunt.com/v1/oauth/authorize?client_id=[clientid]&redirect_uri=[where shall we redirect to?]&response_type=code&scope=public+private",
+  app.get("/v1/oauth/authorize", (req, res) => {
+    axios.get("https://api.producthunt.com/v1/posts/all?sort_by=votes_count&order=desc&search[featured]=true&per_page=20",
       {
-        headers: {
-          "token": ""
-        }
+        headers : {
+          Authorization : "Bearer ltFzvc_0ClMTivn7PaXKVwCOL1SwqoufwO_D_fmHuAA"
+        }  
       })
       .then(function (response) {
-        console.log(res.data);
+        console.log(response.data);
         res.send(response.data);
       })
       .catch(function (error) {
