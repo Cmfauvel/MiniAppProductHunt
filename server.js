@@ -34,7 +34,7 @@ app.use(express.json());
         Authorization : "Bearer ltFzvc_0ClMTivn7PaXKVwCOL1SwqoufwO_D_fmHuAA"
       }  
     }).then(function (response) {
-      console.log(response);
+      console.log(response.data);
       res.send(response.data);
     })
     .catch(function (error) {
