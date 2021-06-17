@@ -26,15 +26,18 @@ app.use(express.json());
   //     });
   // })
 
-  app.get("/v1/posts/day", (req, res) => {
-    const date = "2021-02-01"
+  app.post("/v1/posts", (req, res) => {
+    const year = req.body.date.year;
+    const month = req.body.date.month;
+    const day = req.body.date.day;
+    console.log(req.body)
     //req.body.date;
-    axios.get(`https://api.producthunt.com/v1/posts?day=${date}`, {
+    axios.get(`https://api.producthunt.com/v1/posts?day=` + year + '-' + month + '-' + day, {
       headers : {
         Authorization : "Bearer ltFzvc_0ClMTivn7PaXKVwCOL1SwqoufwO_D_fmHuAA"
       }  
     }).then(function (response) {
-      console.log(response.data);
+      // console.log(response.data);
       res.send(response.data);
     })
     .catch(function (error) {
