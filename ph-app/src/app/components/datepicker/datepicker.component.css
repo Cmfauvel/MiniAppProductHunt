@@ -1,0 +1,25 @@
+.material-icons {
+    font-size: 18px;
+}
+
+.container {
+    width: 95%;
+    left: 2.5%;
+}
+
+.form-inline {
+    margin-bottom: 30px;
+}
+
+.container__cards {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container__pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

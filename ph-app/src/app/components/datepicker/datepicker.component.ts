@@ -11,7 +11,11 @@ import { ProductService } from 'src/app/services/product.service';
 export class DatepickerComponent implements OnInit {
   model: NgbDateStruct;
   dateForm;
-  products;
+  products : [];
+  page = 1;
+  count = 0;
+  pageSize = 9;
+  isDisabled = true;
   constructor(private productService: ProductService,
     private formBuilder: FormBuilder) { }
 
@@ -24,7 +28,8 @@ export class DatepickerComponent implements OnInit {
   pickDate(){
     this.productService.getProductByDate(this.dateForm.value).subscribe((response) => {
       this.products = response.posts;
-      console.log(this.dateForm.value)
+      this.isDisabled = !this.isDisabled;
+      console.log(response.posts)
     })
   }
 }

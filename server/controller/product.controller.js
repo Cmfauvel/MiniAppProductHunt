@@ -4,6 +4,7 @@ require("dotenv").config();
 const axios = require("axios");
 
 exports.findProductByDate = (req, res) => {
+    console.log(req.query.limit, req.query.skip)
     const token = process.env.TOKEN; 
     const year = req.body.date.year;
     const month = req.body.date.month;
