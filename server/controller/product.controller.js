@@ -4,7 +4,6 @@ require("dotenv").config();
 const axios = require("axios");
 
 exports.findProductByDate = (req, res) => {
-    console.log(req.query.limit, req.query.skip)
     const token = process.env.TOKEN; 
     const year = req.body.date.year;
     const month = req.body.date.month;
@@ -12,7 +11,7 @@ exports.findProductByDate = (req, res) => {
     // console.log(req.body);
     axios.get(`https://api.producthunt.com/v1/posts?day=` + year + '-' + month + '-' + day, {
       headers : {
-        Authorization : "Bearer ltFzvc_0ClMTivn7PaXKVwCOL1SwqoufwO_D_fmHuAA"
+        Authorization : "Bearer " + token
       }  
     }).then(function (response) {
       // console.log(response.data);
@@ -22,4 +21,41 @@ exports.findProductByDate = (req, res) => {
       console.log("err", error);
       res.send("error");
     });
+}
+
+exports.findProductByCategory = (req, res) => {
+  const token = process.env.TOKEN; 
+ const topic = req.body.topic;
+ console.log(req.body)
+  axios.get(`https://api.producthunt.com/v1/posts/all?search[category]=${topic}`, {
+    headers : {
+      Authorization : "Bearer " + token
+    }  
+  }).then(function (response) {
+    res.send(response.data);
+  })
+  .catch(function (error) {
+    console.log(req.body);
+    res.send("error");
+  });
+}
+
+
+exports.findProductByCategoryByDate = (req, res) => {
+  const token = process.env.TOKEN; 
+  const topic = "no-code";
+  const date = req.body.currentDate;
+  // req.body.topic.replace(/ /g, "")
+  console.log(req.params);
+  axios.get(`https://api.producthunt.com/v1/categories/${topic}/posts?day=${date}`, {
+    headers : {
+      Authorization : "Bearer " + token
+    }  
+  }).then(function (response) {
+    res.send(response.data);
+  })
+  .catch(function (error) {
+    console.log(error)
+    res.send("error");
+  });
 }

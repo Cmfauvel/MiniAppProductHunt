@@ -18,7 +18,8 @@
   <button class="btn btn-primary" (click)="pickDate()">Voir les produits</button>
   <hr>
   <div class="container__pagination">
-    <ngb-pagination [collectionSize]="100" [(page)]="page" aria-label="Default pagination" [disabled]='isDisabled'></ngb-pagination>
+    <ngb-pagination [collectionSize]="products?.length" [(page)]="page" aria-label="Default pagination" [disabled]='isDisabled'></ngb-pagination>
+   <app-filter-search [date]="date"></app-filter-search>
   </div>
   <div class="container__cards" >
     <div class="card" style="width: 18rem;"
@@ -27,6 +28,7 @@
       <div class="card-body">
         <h5 class="card-title">{{ product.name }}</h5>
         <p class="card-text">{{ product.created_at }}</p>
+        <p class="card-text">{{ product.topics.name }}</p>
         <a href="#" class="btn btn-primary">{{ product.category_id }}</a>
       </div>
     </div>

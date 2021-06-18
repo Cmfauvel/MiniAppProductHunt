@@ -13,6 +13,10 @@ export class ProductService {
 
   getProductByDate(date){
     return this.http.post<any>(this.baseUri, date)
+  }
+
+  filterProductByTopic(topic, date){
+    return this.http.post<any>(this.baseUri + `/${topic}/${date}`, topic, date)
     // .pipe(map((response) => {
     //   console.log(response)
     //   return response;

@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { FilterSearchComponent } from './components/filter-search/filter-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DatepickerComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    FilterSearchComponent
   ],
   imports: [
     BrowserModule,
