@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from 'src/app/services/product.service';
@@ -15,7 +15,7 @@ export class DatepickerComponent implements OnInit {
   page = 1;
   count = 0;
   pageSize = 9;
-  @Output() date;
+  date;
   isDisabled = true;
   constructor(private productService: ProductService,
     private formBuilder: FormBuilder) { }
@@ -24,12 +24,13 @@ export class DatepickerComponent implements OnInit {
       this.dateForm = this.formBuilder.group({
         date: this.formBuilder.control('', [Validators.required])
       })
-      this.date = this.dateForm.value;
+      
         
         
     }
 
   pickDate(){
+    this.date = this.dateForm.value;
     this.productService.getProductByDate(this.date).subscribe((response) => {
       this.products = response.posts;
       this.isDisabled = !this.isDisabled;

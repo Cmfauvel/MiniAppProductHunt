@@ -7,19 +7,19 @@ import { map } from 'rxjs/operators';
 })
 export class ProductService {
 
-  baseUri = `http://localhost:5000/v1/posts`
+  baseUri = `http://localhost:5000/v1`
 
   constructor(private http: HttpClient) { }
 
   getProductByDate(date){
-    return this.http.post<any>(this.baseUri, date)
+    return this.http.post<any>(this.baseUri + '/posts', date)
   }
 
   filterProductByTopic(topic, date){
-    return this.http.post<any>(this.baseUri + `/${topic}/${date}`, topic, date)
-    // .pipe(map((response) => {
-    //   console.log(response)
-    //   return response;
-    // }))
+    return this.http.get<any>(this.baseUri + `/${date}/${topic}`)
+    .pipe(map((response) => {
+      console.log(response)
+      return response;
+    }))
   }
 }

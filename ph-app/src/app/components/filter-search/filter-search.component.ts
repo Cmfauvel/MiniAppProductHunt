@@ -22,7 +22,6 @@ products;
         this.formTopic = this.formBuilder.group({
           topic: this.formBuilder.control('', [Validators.required])
         })
-        
   }
 
   getTopics(){
@@ -33,13 +32,14 @@ products;
   }
 
   selectTopic(){
-    const year = this.date.year;
-    const month = this.date.month;
-    const day = this.date.day;
+    const year = this.date.date.year;
+    const month = this.date.date.month;
+    const day = this.date.date.day;
     const currentDate = year + '-' + month + '-' + day;
-    const topic = this.formTopic.value.topic.replace(/ /g, "");
+    console.log(currentDate)
+    const topic = this.formTopic.value.topic;
     this.productService.filterProductByTopic(topic, currentDate).subscribe((response) => {
-      this.products = response;
+      this.products = response.posts;
       console.log(this.products)
     })
     console.log(topic, this.date)

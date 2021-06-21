@@ -2,19 +2,20 @@
 
 require("dotenv").config();
 const axios = require("axios");
+const token = process.env.TOKEN; 
+const baseUri = "http://api.producthunt.com/v1";
 
 exports.findProductByDate = (req, res) => {
-    const token = process.env.TOKEN; 
     const year = req.body.date.year;
     const month = req.body.date.month;
     const day = req.body.date.day;
     // console.log(req.body);
-    axios.get(`https://api.producthunt.com/v1/posts?day=` + year + '-' + month + '-' + day, {
+    axios.get(`${baseUri}/posts?day=` + year + '-' + month + '-' + day, {
       headers : {
         Authorization : "Bearer " + token
       }  
     }).then(function (response) {
-      // console.log(response.data);
+      console.log(response.data);
       res.send(response.data);
     })
     .catch(function (error) {
@@ -24,10 +25,9 @@ exports.findProductByDate = (req, res) => {
 }
 
 exports.findProductByCategory = (req, res) => {
-  const token = process.env.TOKEN; 
  const topic = req.body.topic;
  console.log(req.body)
-  axios.get(`https://api.producthunt.com/v1/posts/all?search[category]=${topic}`, {
+  axios.get(`${baseUri}/posts/all?search[category]=${topic}`, {
     headers : {
       Authorization : "Bearer " + token
     }  
@@ -42,12 +42,11 @@ exports.findProductByCategory = (req, res) => {
 
 
 exports.findProductByCategoryByDate = (req, res) => {
-  const token = process.env.TOKEN; 
-  const topic = "no-code";
-  const date = req.body.currentDate;
+    const topic = req.params.topic;
+  const date = req.params.date;
   // req.body.topic.replace(/ /g, "")
   console.log(req.params);
-  axios.get(`https://api.producthunt.com/v1/categories/${topic}/posts?day=${date}`, {
+  axios.get(`${baseUri}/categories/${topic}/posts?day=${date}`, {
     headers : {
       Authorization : "Bearer " + token
     }  

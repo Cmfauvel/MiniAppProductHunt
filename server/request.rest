@@ -1,1 +1,1 @@
-POST http://localhost:5000/v1/posts/cat/day
+GET http://localhost:5000/v1/2021-6-15/audio-and-voice
