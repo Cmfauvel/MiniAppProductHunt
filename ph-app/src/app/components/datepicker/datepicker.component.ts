@@ -11,6 +11,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class DatepickerComponent implements OnInit {
   model: NgbDateStruct;
   dateForm;
+  formTopic;
   products;
   page = 1;
   pageSize = 9;
@@ -29,6 +30,9 @@ export class DatepickerComponent implements OnInit {
     this.dateForm = this.formBuilder.group({
       date: this.formBuilder.control('', [Validators.required])
     })
+    this.formTopic = this.formBuilder.group({
+      topic: this.formBuilder.control('', [Validators.required])
+    })
 
 
   }
@@ -42,22 +46,34 @@ export class DatepickerComponent implements OnInit {
           console.log(product.topics[i])
               this.tabTopics.push(product.topics[i].name);
           this.resultTopics = Array.from(new Set(this.tabTopics));
-          console.log(this.resultTopics)
-              return this.tabTopics;
+              return this.resultTopics;
             }
           })
         
-      
+          console.log(this.resultTopics)
       this.isDisabled = !this.isDisabled;
     })
   }
+
+  selectTopic(){
+    const year = this.date.date.year;
+    const month = this.date.date.month;
+    const day = this.date.date.day;
+    const currentDate = year + '-' + month + '-' + day;
+    console.log(currentDate)
+    const topic = this.formTopic.value.topic.replace(/ /g, "-").toLowerCase();
+    if(this.formTopic.value.topic !== "") {
+      this.productService.filterProductByTopic(topic, currentDate).subscribe((response) => {
+        this.products = response.posts;
+        console.log(response)
+      }) 
+      console.log(topic, this.date)
+    } else {
+      this.productService.getProductByDate(this.date).subscribe((response) => {
+        this.products = response.posts;})
+      }
+    
+    
+  }
   
-  chartClicked(e) {
-    console.log(e);
-  }
-
-  chartHovered(e) {
-    console.log(e);
-  }
-
 }

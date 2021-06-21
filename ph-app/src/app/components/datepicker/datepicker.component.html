@@ -1,4 +1,3 @@
-
 <div class="container">
   <h3>Trouvez vos produits selon leurs dates de sortie</h3>
   <hr>
@@ -19,9 +18,17 @@
   </form>
   <button class="btn btn-primary" (click)="pickDate()">Voir les produits</button>
   <hr>
-   <app-filter-search [date]="date" *ngIf="date != undefined"></app-filter-search>
-  
-  <div class="cards" >
+  <div class="container__filter" *ngIf="date != undefined">
+    <form class="form-inline" [formGroup]="formTopic">
+      <select class="form-select" formControlName="topic" id="">
+        <option value="" selected>Toutes les catégories</option>
+        <option *ngFor="let topic of resultTopics; let i = index" id="{{i}}" name="topic" value="{{ topic }}">{{topic}}
+        </option>
+      </select>
+    </form>
+    <button class="btn btn-primary" (click)="selectTopic()">Voir les produits</button>
+  </div>
+  <div class="cards">
     <div class="card" style="width: 18rem;"
       *ngFor="let product of products | slice: (page-1) * pageSize : page * pageSize">
       <img src="{{product.thumbnail.image_url}}" class="card-img-top" alt="...">
@@ -35,6 +42,7 @@
     </div>
   </div>
   <div class="container__pagination">
-    <ngb-pagination [collectionSize]="products?.length" [(page)]="page" aria-label="Default pagination" [disabled]='isDisabled'></ngb-pagination>
+    <ngb-pagination [collectionSize]="products?.length" [(page)]="page" aria-label="Default pagination"
+      [disabled]='isDisabled'></ngb-pagination>
   </div>
 </div>
