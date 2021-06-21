@@ -9,13 +9,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { FilterSearchComponent } from './components/filter-search/filter-search.component';
+import { PiechartComponent } from './components/piechart/piechart.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
     AppComponent,
     DatepickerComponent,
     ProductDetailsComponent,
-    FilterSearchComponent
+    FilterSearchComponent,
+    PiechartComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,8 @@ import { FilterSearchComponent } from './components/filter-search/filter-search.
     NgbModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

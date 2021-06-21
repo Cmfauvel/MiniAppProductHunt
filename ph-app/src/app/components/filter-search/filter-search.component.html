@@ -1,17 +1,28 @@
-<form [formGroup]="formTopic">
-  <select formControlName="topic" id="">
-    <option>Choisissez un topic</option>
-    <option *ngFor="let topic of topics" id="{{ topic.id}}" name="topic" value="{{ topic.slug }}">{{ topic.name }}</option>
-  </select>
-</form>
-<button class="btn btn-primary" (click)="selectTopic()">Voir les produits</button>
-<div class="container__cards">
-  <div class="card" style="width: 18rem;" *ngFor="let product of products">
-      <!-- <img src=" {{product.thumbnail.image_url}}" class="card-img-top" alt="..."> -->
-    <div class="card-body">
-      <h5 class="card-title">{{ product.name }}</h5>
-      <p class="card-text">{{ product.created_at }}</p>
-      <a href="#" class="btn btn-primary">{{ product.category_id }}</a>
-    </div>
-  </div>
+<div class="container__filter">
+  <form class="form-inline" [formGroup]="formTopic">
+    <select class="form-select" formControlName="topic" id="">
+      <option selected>Choisissez un topic</option>
+      <option *ngFor="let topic of topics" id="{{ topic.id}}" name="topic" value="{{ topic.slug }}">{{ topic.name }} {{ topic.posts_count}}
+      </option>
+    </select>
+  </form>
+  <button class="btn btn-primary" (click)="selectTopic()">Voir les produits</button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Country</th>
+        <th scope="col">Area</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          {{ product.name }}
+        </td>
+        <td>{{ product.category_id }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

@@ -1,2 +1,17 @@
-<h1>Hello</h1>
-<router-outlet></router-outlet>
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>DatePicker</a>
+      <ng-template ngbNavContent>
+        <app-datepicker></app-datepicker>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Pie Chart</a>
+      <ng-template ngbNavContent>
+        <app-piechart></app-piechart>
+      </ng-template>
+    </li>
+  </ul>
+  
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  

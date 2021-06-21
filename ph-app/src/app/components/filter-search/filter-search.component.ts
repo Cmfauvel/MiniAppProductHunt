@@ -10,7 +10,7 @@ import { TopicService } from 'src/app/services/topic.service';
 })
 export class FilterSearchComponent implements OnInit {
 formTopic;
-topics;
+@Input() topics;
 products;
 @Input() date;
   constructor(private topicService: TopicService,
@@ -40,7 +40,7 @@ products;
     const topic = this.formTopic.value.topic;
     this.productService.filterProductByTopic(topic, currentDate).subscribe((response) => {
       this.products = response.posts;
-      console.log(this.products)
+      console.log(response)
     })
     console.log(topic, this.date)
     
