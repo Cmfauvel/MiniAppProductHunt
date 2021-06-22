@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { TopicService } from 'src/app/services/topic.service';
 
 @Component({
@@ -17,37 +16,48 @@ export class PiechartComponent implements OnInit {
   // Pie
   public pieChartLabels: string[] = ['Chrome', 'Safari', 'Firefox', 'Internet Explorer', 'Other'];
   public pieChartData: number[] = [];
-  public pieChartType: string = 'pie';
-  colors = [];
+  public pieChartType = 'pie';
+  public pieChartColors = [
+    {
+      backgroundColor: [],
+    },
+  ];
   constructor(private topicService: TopicService) { }
 
   ngOnInit(): void {
     this.getTopics();
-    console.log(this.topicNames)
+    console.log(this.topicNames);
   }
 
-  getTopics() {
+  getColors(): any[] {
+    const r = Math.floor(Math.random() * 200);
+    const g = Math.floor(Math.random() * 200);
+    const b = Math.floor(Math.random() * 200);
+    this.pieChartColors.map((element) => 
+    element.backgroundColor.push('rgb(' + r + ', ' + g + ', ' + b + ')'))
+    
+    return this.pieChartColors;
+  }
+
+  getTopics(): void {
     this.topicService.getAllTopics().subscribe((response) => {
       this.topics = response.topics;
-      console.log(this.topics)
+      console.log(this.topics);
       this.topics.map(topic => {
-        const count = this.topicNames.push(topic.name, topic.posts_count);
+        const count = this.topicNames.push(topic.name);
         this.pieChartData.push(topic.posts_count);
         this.topicNames.forEach(element => {
-          this.colors.push('#'+(Math.random()*0xFFFFFF<<0).toString(16))
+          this.getColors();
         });
         this.pieChartData.length = this.topicNames.length;
-        return this.topicNames, this.pieChartData, this.colors;
+        return this.topicNames, this.pieChartData, this.pieChartColors;
       });
-    })
+      console.log(this.pieChartColors);
+      console.log(this.pieChartData);
+    });
   }
-
-  // events
-  chartClicked(e) {
-    console.log(e);
-  }
-
+  
   chartHovered(e) {
-    console.log(e);
+    // console.log(e);
   }
 }

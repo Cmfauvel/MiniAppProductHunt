@@ -1,4 +1,6 @@
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ChartsModule } from 'ng2-charts';
 
 import { PiechartComponent } from './piechart.component';
 
@@ -8,7 +10,9 @@ describe('PiechartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PiechartComponent ]
+      declarations: [ PiechartComponent ],
+      imports: [ChartsModule],
+      providers: [HttpClient, HttpHandler]
     })
     .compileComponents();
   });

@@ -1,4 +1,9 @@
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductService } from 'src/app/services/product.service';
 
 import { DatepickerComponent } from './datepicker.component';
 
@@ -8,7 +13,10 @@ describe('DatepickerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DatepickerComponent ]
+      declarations: [ DatepickerComponent ],
+      imports: [ReactiveFormsModule, NgbModule],
+      providers: [HttpClient, ProductService, HttpHandler],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   });

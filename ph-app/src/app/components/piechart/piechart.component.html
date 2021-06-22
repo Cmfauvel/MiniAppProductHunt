@@ -1,5 +1,4 @@
-<p>piechart works!</p>
-<h4 style="text-align:center">Pie Chart For Browser usage of &nbsp; Eduforbetterment.com
+<h4 style="text-align:center">Répartition des produits de l'API ProductHunt par catégorie
 </h4>
 
 <div style="display: block">
@@ -7,8 +6,6 @@
         [data]="pieChartData"
         [labels]="topicNames"
         [chartType]="pieChartType"
-        [colors]="colors"
-        (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)"></canvas>
+        [colors]="pieChartColors"
+        (chartHover)="chartHovered($event)"></canvas>
 </div>
-<ngb-pagination [collectionSize]="topicNames?.length" [(page)]="page" aria-label="Default pagination" [disabled]='isDisabled'></ngb-pagination>
