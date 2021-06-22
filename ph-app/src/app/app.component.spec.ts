@@ -25,13 +25,13 @@ describe('AppComponent', () => {
   it(`should have as title 'ph-app'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('ph-app');
+    expect(app.title).toEqual('App Product Hunt');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.title').textContent).toContain('ph-app');
+    expect(compiled.querySelector('h1').textContent).toContain('App Product Hunt');
   });
 });

@@ -7,15 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
-import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { PiechartComponent } from './components/piechart/piechart.component';
 import { ChartsModule } from 'ng2-charts';
+import { SpinnersAngularModule } from 'spinners-angular';
 
 @NgModule({
   declarations: [
     AppComponent,
     DatepickerComponent,
-    ProductDetailsComponent,
     PiechartComponent
   ],
   imports: [
@@ -25,7 +24,8 @@ import { ChartsModule } from 'ng2-charts';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
+    SpinnersAngularModule
   ],
   providers: [],
   bootstrap: [AppComponent]

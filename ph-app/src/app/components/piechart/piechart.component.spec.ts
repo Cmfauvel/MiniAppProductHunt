@@ -1,6 +1,7 @@
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChartsModule } from 'ng2-charts';
+import { TopicService } from 'src/app/services/topic.service';
 
 import { PiechartComponent } from './piechart.component';
 

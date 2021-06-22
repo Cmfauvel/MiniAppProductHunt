@@ -9,24 +9,15 @@ describe('TopicService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, HttpClientModule],
+      imports: [HttpClientTestingModule],
       providers: [TopicService, HttpClient]
     });
     service = TestBed.inject(TopicService);
     const httpTestingController = TestBed.inject(HttpTestingController);
   });
 
-  it('doit récupérer la liste des topics depuis le backend', () => {
-    service.getAllTopics().subscribe((result) => {
-      expect(result).not.toEqual('');
-    });
-  });
-
-  // it('should be created', () => {
-  //   expect(service).toBeTruthy();
-  // });
-  afterEach(() => {
-    TestBed.resetTestingModule();
+  it('should be created', () => {
+    expect(service).toBeTruthy();
   });
 });
 

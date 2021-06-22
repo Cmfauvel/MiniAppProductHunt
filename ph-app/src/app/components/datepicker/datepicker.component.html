@@ -1,5 +1,5 @@
 <div class="container">
-  <h3>Trouvez vos produits selon leurs dates de sortie</h3>
+  <h4>Trouvez vos produits selon leurs dates de sortie</h4>
   <hr>
   <form class="form-inline" [formGroup]="dateForm">
     <div class="form-group">
@@ -15,18 +15,31 @@
         </div>
       </div>
     </div>
+    <button class="btn btn-primary" (click)="pickDate()">Voir les produits</button>
   </form>
-  <button class="btn btn-primary" (click)="pickDate()">Voir les produits</button>
-  <hr>
   <div class="container__filter" *ngIf="date != undefined">
-    <form class="form-inline" [formGroup]="formTopic">
-      <select class="form-select" formControlName="topic" id="">
-        <option value="" selected>Toutes les catégories</option>
-        <option *ngFor="let topic of resultTopics; let i = index" id="{{i}}" name="topic" value="{{ topic }}">{{topic}}
-        </option>
-      </select>
+    <form class="form" [formGroup]="formTopic" >
+      <div class="form-group">
+        <select class="form-select" formControlName="topic" id="">
+          <option value="">Toutes les catégories</option>
+          <option *ngFor="let topic of resultTopics; let i = index" id="{{i}}" name="topic" value="{{ topic }}">{{topic}}
+          </option>
+        </select>
+      </div>
+      <button class="btn btn-primary" (click)="selectTopic()">Filtrer</button>
     </form>
-    <button class="btn btn-primary" (click)="selectTopic()">Voir les produits</button>
+  </div>
+  <hr>
+  <div class="container__pagination">
+    <ngb-pagination [collectionSize]="products?.length" [(page)]="page" aria-label="Default pagination"
+      [disabled]='isDisabled' *ngIf="date != undefined"></ngb-pagination>
+  </div>
+  <div class="spinner">
+    <sa-spinner-round-filled *ngIf="date != undefined && isloading"
+                              [size]="150" 
+                              [thickness]="138" 
+                              [speed]="100" 
+                              color="rgba(57, 134, 172, 1)"></sa-spinner-round-filled>
   </div>
   <div class="cards">
     <div class="card" style="width: 18rem;"
@@ -37,12 +50,7 @@
         <div class="categories">
           <span class="card-text" *ngFor="let topic of product.topics">#{{topic.name}} </span>
         </div>
-        <a href="#" class="btn btn-primary">Détails</a>
       </div>
     </div>
-  </div>
-  <div class="container__pagination">
-    <ngb-pagination [collectionSize]="products?.length" [(page)]="page" aria-label="Default pagination"
-      [disabled]='isDisabled'></ngb-pagination>
   </div>
 </div>

@@ -15,8 +15,7 @@ describe('DatepickerComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ DatepickerComponent ],
       imports: [ReactiveFormsModule, NgbModule],
-      providers: [HttpClient, ProductService, HttpHandler],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      providers: [HttpClient, ProductService, HttpHandler]
     })
     .compileComponents();
   });

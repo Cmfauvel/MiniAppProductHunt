@@ -18,46 +18,44 @@ export class PiechartComponent implements OnInit {
   public pieChartData: number[] = [];
   public pieChartType = 'pie';
   public pieChartColors = [
-    {
-      backgroundColor: [],
-    },
-  ];
+                            {
+                              backgroundColor: [],
+                            },
+                          ];
+
   constructor(private topicService: TopicService) { }
 
   ngOnInit(): void {
     this.getTopics();
-    console.log(this.topicNames);
   }
 
   getColors(): any[] {
     const r = Math.floor(Math.random() * 200);
     const g = Math.floor(Math.random() * 200);
     const b = Math.floor(Math.random() * 200);
-    this.pieChartColors.map((element) => 
-    element.backgroundColor.push('rgb(' + r + ', ' + g + ', ' + b + ')'))
-    
+    this.pieChartColors.map((element) => element.backgroundColor.push('rgb(' + r + ', ' + g + ', ' + b + ')'));
     return this.pieChartColors;
   }
 
   getTopics(): void {
     this.topicService.getAllTopics().subscribe((response) => {
       this.topics = response.topics;
-      console.log(this.topics);
       this.topics.map(topic => {
         const count = this.topicNames.push(topic.name);
         this.pieChartData.push(topic.posts_count);
-        this.topicNames.forEach(element => {
+        this.topicNames.forEach(() => {
           this.getColors();
         });
         this.pieChartData.length = this.topicNames.length;
-        return this.topicNames, this.pieChartData, this.pieChartColors;
+        // return this.topicNames, this.pieChartData, this.pieChartColors;
       });
-      console.log(this.pieChartColors);
-      console.log(this.pieChartData);
-    });
+    }
+    , (error) => {
+      console.log(error);
+      });
   }
-  
-  chartHovered(e) {
+
+  chartHovered(e): any{
     // console.log(e);
   }
 }

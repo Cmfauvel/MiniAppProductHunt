@@ -1,11 +1,11 @@
-<h4 style="text-align:center">Répartition des produits de l'API ProductHunt par catégorie
-</h4>
-
-<div style="display: block">
-<canvas baseChart
-        [data]="pieChartData"
-        [labels]="topicNames"
-        [chartType]="pieChartType"
-        [colors]="pieChartColors"
-        (chartHover)="chartHovered($event)"></canvas>
+<div class="container">
+        <h4>Répartition des produits de l'API ProductHunt par catégorie</h4>
+        <div style="display: block">
+        <canvas baseChart
+                [data]="pieChartData"
+                [labels]="topicNames"
+                [chartType]="pieChartType"
+                [colors]="pieChartColors"
+                (chartHover)="chartHovered($event)"></canvas>
+        </div>
 </div>

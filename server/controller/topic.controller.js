@@ -5,6 +5,7 @@ const axios = require("axios");
 
 exports.findTopics = (req, res) => {
     const token = process.env.TOKEN; 
+
     axios.get(`https://api.producthunt.com/v1/topics`, {
       headers : {
         Authorization : "Bearer " + token
@@ -13,7 +14,6 @@ exports.findTopics = (req, res) => {
       res.send(response.data);
     })
     .catch(function (error) {
-      console.log("err", error);
       res.send("error");
     });
 }

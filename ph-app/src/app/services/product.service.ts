@@ -19,7 +19,6 @@ export class ProductService {
   filterProductByTopic(topic, date): Observable<any>{
     return this.http.get<any>(this.baseUri + `/${date}/${topic}`)
     .pipe(map((response) => {
-      console.log(response);
       return response;
     }));
   }

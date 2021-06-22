@@ -32,6 +32,7 @@
     "hammerjs": "~2.0.8",
     "ng2-charts": "^2.4.2",
     "rxjs": "^6.6.7",
+    "spinners-angular": "0.0.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },

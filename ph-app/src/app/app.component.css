@@ -1,0 +1,6 @@
+.title {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    font-variant-caps: all-small-caps;
+}
